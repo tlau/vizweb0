@@ -1,7 +1,5 @@
 {
   "packages": {
-    "foundation": {},
-    "npm": {},
-    "ace": {}
+    "foundation": {}
   }
 }

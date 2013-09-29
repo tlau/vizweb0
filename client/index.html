@@ -24,6 +24,11 @@
       {{> nodedata}}
     </div>
   </div>
+  <div class="row">
+    <div class="large-12 columns">
+      {{> json}}
+    </div>
+  </div>
 </body>
 
 <template name="start">
@@ -40,4 +45,13 @@
     {{/each}}
     </ol>
   {{/if}}
+</template>
+
+<template name="json">
+  <textarea class="json">{{data}}</textarea>
+  <div class="row">
+    <div class="large-3 columns">
+      <button id="update" class="button">Update</button>
+    </div>
+  </div>
 </template>

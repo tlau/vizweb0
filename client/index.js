@@ -5,7 +5,7 @@ Session.set('nodeConnections', []);
 
 var selectedNode = null;
 
-var json = [{
+Template.json.data = JSON.stringify([{
   "id":"chris",
   "name":"Chris",
   "data":{
@@ -60,10 +60,12 @@ var json = [{
   "adjacencies": [
     "chris", "dave"
   ]
-}];
+}]);
+
+var fd;
 
 Template.start.rendered = function() {
-  var fd = new $jit.ForceDirected({
+  fd = new $jit.ForceDirected({
     injectInto: 'graph',
     Navigation: {
       enable: false,
@@ -166,7 +168,7 @@ Template.start.rendered = function() {
     }
   });
 
-  fd.loadJSON(json);
+  fd.loadJSON(JSON.parse(Template.json.data));
 
   fd.computeIncremental({
     iter: 40,
@@ -187,7 +189,29 @@ Template.start.rendered = function() {
 
 Template.nodedata.nodename = function() {
   return Session.get('nodeName');
-}
+};
 Template.nodedata.connections = function() {
   return Session.get('nodeConnections');
-}
+};
+
+Template.json.events({
+  'click #update': function () {
+    fd.loadJSON(JSON.parse($('.json').val()));
+
+    fd.computeIncremental({
+      iter: 40,
+      property: 'end',
+      onStep: function(perc){
+        console.log(perc + '% loaded...');
+      },
+      onComplete: function(){
+        console.log('done');
+        fd.animate({
+          modes: ['linear'],
+          transition: $jit.Trans.Elastic.easeOut,
+          duration: 2500
+        });
+      }
+    });
+  }
+});

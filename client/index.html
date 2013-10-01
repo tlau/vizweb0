@@ -48,7 +48,64 @@
 </template>
 
 <template name="json">
-  <textarea class="json">{{data}}</textarea>
+    <div id="editor" class="editor">[{
+  "id":"chris",
+  "name":"Chris",
+  "data":{
+    "$color":"#ff0000",
+    "$type":"circle",
+    "$dim":10
+  },
+  "adjacencies": [
+    "tessa", "melissa", "cameron", "dave"
+  ]
+}, {
+  "id":"tessa",
+  "name":"Tessa",
+  "data":{
+    "$color":"#eedd22",
+    "$type":"triangle",
+    "$dim":10
+  },
+  "adjacencies": [
+    "chris", "melissa", "dave"
+  ]
+}, {
+  "id":"melissa",
+  "name":"Melissa",
+  "data":{
+    "$color":"#7a78ef",
+    "$type":"triangle",
+    "$dim":10
+  },
+  "adjacencies": [
+    "chris", "tessa"
+  ]
+}, {
+  "id":"dave",
+  "name":"David",
+  "data":{
+    "$color":"#00ff00",
+    "$type":"circle",
+    "$dim":10
+  },
+  "adjacencies": [
+    "chris", "cameron"
+  ]
+}, {
+  "id":"cameron",
+  "name":"Cameron",
+  "data":{
+    "$color":"#0000ff",
+    "$type":"circle",
+    "$dim":10
+  },
+  "adjacencies": [
+    "chris", "dave"
+  ]
+}]
+    </div>
+  <br>
   <div class="row">
     <div class="large-3 columns">
       <button id="update" class="button">Update</button>

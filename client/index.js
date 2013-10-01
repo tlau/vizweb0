@@ -5,7 +5,8 @@ Session.set('nodeConnections', []);
 
 var selectedNode = null;
 
-Template.json.data = JSON.stringify([{
+var initialData = JSON.stringify(
+[{
   "id":"chris",
   "name":"Chris",
   "data":{
@@ -168,7 +169,7 @@ Template.start.rendered = function() {
     }
   });
 
-  fd.loadJSON(JSON.parse(Template.json.data));
+  fd.loadJSON(JSON.parse(initialData));
 
   fd.computeIncremental({
     iter: 40,
@@ -196,7 +197,7 @@ Template.nodedata.connections = function() {
 
 Template.json.events({
   'click #update': function () {
-    fd.loadJSON(JSON.parse($('.json').val()));
+    fd.loadJSON(JSON.parse(window.editor.value));
 
     fd.computeIncremental({
       iter: 40,
@@ -215,3 +216,11 @@ Template.json.events({
     });
   }
 });
+
+Template.json.rendered = function() {
+  window.editor = new ReactiveAce();
+  window.editor.value = initialData;
+  window.editor.attach(ace.edit('editor'));
+  window.editor.theme = 'monokai';
+  window.editor.syntaxMode = 'javascript';
+}

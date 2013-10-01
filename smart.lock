@@ -2,13 +2,19 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "foundation": {}
+      "foundation": {},
+      "reactive-ace": {}
     },
     "packages": {
       "foundation": {
         "git": "https://github.com/ewall/meteor-foundation.git",
         "tag": "v4.3.2",
         "commit": "4cd0dc6ac5c69bf7477917a836d9078262d273a0"
+      },
+      "reactive-ace": {
+        "git": "https://github.com/mad-eye/meteor-reactive-ace.git",
+        "tag": "v0.0.4",
+        "commit": "9db4f200d7c27c61b242b7cc6a64bad7d2b3794c"
       }
     }
   }
